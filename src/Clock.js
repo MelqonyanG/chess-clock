@@ -10,7 +10,8 @@ class Clock extends React.Component {
           blackTime: this.secondsToTime(0),
           blackSeconds: 0,
           turn: 'w',
-          inc: 0
+          inc: 0,
+          hover: false
         };
     this.whiteTimer = 0;
     this.blackTimer = 0;
@@ -186,21 +187,41 @@ class Clock extends React.Component {
     }
   }
 
-  showInfoMsg(){
 
+  handleMouseIn() {
+    this.setState({ hover: true })
+  }
+
+  handleMouseOut() {
+    this.setState({ hover: false })
   }
 
   render() {
+    const tooltipStyle = {
+        display: this.state.hover ? 'block' : 'none',
+        backgroundColor: '#D8E1E2'
+      };
     return(
       <div>
         <div>
-          <FaInfo/>
+          <span onMouseOver={this.handleMouseIn.bind(this)}
+                onMouseOut={this.handleMouseOut.bind(this)}><FaInfo/></span>
+          <div>
+            <div style={tooltipStyle}>
+              <p>Define minutes for per side in <b>minutes</b> field</p>
+              <p>Define seconds for per side in <b>seconds</b> field</p>
+              <p>Define increase for per side in <b>increase</b> field</p>
+              <p>Start the clock with the <b>START</b> button</p>
+              <p>Stop the clock with the <b>STOP</b> button</p>
+              <p>Change turn with the <b>&rArr;</b> and <b>&lArr;</b> keys in your keyboard</p>
+            </div>
+          </div>
         </div>
         <div className="container">
           <div className='row' style={{ minHeight: '100px'}}>
             <div className='col-md-3' style={{minHeight: '100px'}}>
               <button className="btn btn-light btn-block" onClick={this.start}
-                  style={{minHeight: '100px', fontSize:'40px'}}>Start</button>
+                  style={{minHeight: '100px', fontSize:'40px'}}>START</button>
             </div>
             <div className='col-md-6 row' style={{minHeight: '100px'}}>
               <div className='col-md-4'>
@@ -224,7 +245,7 @@ class Clock extends React.Component {
             </div>
             <div className='col-md-3' style={{minHeight: '100px'}}>
               <button className="btn btn-light btn-block" onClick={this.stop}
-                  style={{minHeight: '100px', fontSize:'40px'}}>Stop</button>
+                  style={{minHeight: '100px', fontSize:'40px'}}>STOP</button>
             </div>
           </div>
           <div className='row'>
