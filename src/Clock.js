@@ -199,7 +199,10 @@ class Clock extends React.Component {
   render() {
     const tooltipStyle = {
         display: this.state.hover ? 'block' : 'none',
-        backgroundColor: '#D8E1E2'
+        backgroundColor: '#D8E1E2',
+        width: '30%',
+        position: 'fixed',
+        zIndex: 10
       };
     return(
       <div>
