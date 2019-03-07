@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaInfo } from 'react-icons/fa';
 
 class Clock extends React.Component {
   constructor(props) {
@@ -155,79 +156,92 @@ class Clock extends React.Component {
 
   changeTurn(event){
     if(event.code === 'ArrowLeft'){
-      let seconds = this.state.whiteSeconds + this.state.inc;
-      this.setState({
-        whiteTime: this.secondsToTime(seconds),
-        whiteSeconds: seconds,
-        turn: 'b'
-      });
-      clearInterval(this.whiteTimer);
-      clearInterval(this.blackTimer);
-      document.getElementById('whiteTime').style.fontSize = '120px';
-      document.getElementById('blackTime').style.fontSize = '160px';
-      this.blackTimer = setInterval(this.countDownBlack, 1000);
+      if(this.state.turn === 'w'){
+        let seconds = this.state.whiteSeconds + this.state.inc;
+        this.setState({
+          whiteTime: this.secondsToTime(seconds),
+          whiteSeconds: seconds,
+          turn: 'b',
+        });
+        clearInterval(this.whiteTimer);
+        clearInterval(this.blackTimer);
+        document.getElementById('whiteTime').style.fontSize = '120px';
+        document.getElementById('blackTime').style.fontSize = '160px';
+        this.blackTimer = setInterval(this.countDownBlack, 1000);
+      }
     } else if(event.code === 'ArrowRight'){
-      let seconds = this.state.blackSeconds + this.state.inc;
-      this.setState({
-        blackTime: this.secondsToTime(seconds),
-        blackSeconds: seconds,
-        turn: 'w'
-      });
-      clearInterval(this.blackTimer);
-      clearInterval(this.whiteTimer);
-      document.getElementById('whiteTime').style.fontSize = '160px';
-      document.getElementById('blackTime').style.fontSize = '120px';
-      this.whiteTimer = setInterval(this.countDownWhite, 1000);
+      if(this.state.turn === 'b'){
+        let seconds = this.state.blackSeconds + this.state.inc;
+        this.setState({
+          blackTime: this.secondsToTime(seconds),
+          blackSeconds: seconds,
+          turn: 'w'
+        });
+        clearInterval(this.blackTimer);
+        clearInterval(this.whiteTimer);
+        document.getElementById('whiteTime').style.fontSize = '160px';
+        document.getElementById('blackTime').style.fontSize = '120px';
+        this.whiteTimer = setInterval(this.countDownWhite, 1000);
+      }
     }
+  }
+
+  showInfoMsg(){
+
   }
 
   render() {
     return(
-      <div className="container">
-        <div className='row' style={{ minHeight: '100px'}}>
-          <div className='col-md-3' style={{minHeight: '100px'}}>
-            <button className="btn btn-light btn-block" onClick={this.start}
-                style={{minHeight: '100px', fontSize:'40px'}}>Start</button>
-          </div>
-          <div className='col-md-6 row' style={{minHeight: '100px'}}>
-            <div className='col-md-4'>
-              <input type='number' min='0' max='22' className="form-control"
-              style={{minHeight: '100px', fontSize:'25px', textAlign: 'center'}}
-               placeholder='minutes' onInput={this.changeMinutes} id='minutes'/>
-            </div>
-            <div className='col-md-1'>
-              <span style={{fontSize:'60px', textAlign: 'center'}}><b>:</b></span>
-            </div>
-            <div className='col-md-4'>
-              <input className="form-control" type='number' min='0' max='22'
-              style={{minHeight: '100px', fontSize:'25px', textAlign: 'center'}}
-              placeholder='seconds' onInput={this.changeSeconds} id='seconds'/>
-            </div>
-            <div className='col-md-3'>
-              <input className="form-control" type='number' min='0' max='22'
-              style={{minHeight: '100px', fontSize:'25px', textAlign: 'center'}}
-              placeholder='inc' onInput={this.changeIncrease} id='increase'/>
-            </div>
-          </div>
-          <div className='col-md-3' style={{minHeight: '100px'}}>
-            <button className="btn btn-light btn-block" onClick={this.stop}
-                style={{minHeight: '100px', fontSize:'40px'}}>Stop</button>
-          </div>
+      <div>
+        <div>
+          <FaInfo/>
         </div>
-        <div className='row'>
-          <div className='col-md-6' style={{backgroundColor: 'white', minHeight: '500px'}}>
-            <span id='whiteTime'>
-              <span id='wMin'>{this.state.whiteTime.m > 9 ? this.state.whiteTime.m : ('0' + this.state.whiteTime.m)}</span>:
-              <span id='wSec'>{this.state.whiteTime.s > 9 ? this.state.whiteTime.s : ('0' + this.state.whiteTime.s)}</span>
-            </span>
-            <img src={require('./img/left.png')} alt='keyleft' className='leftKey'/>
+        <div className="container">
+          <div className='row' style={{ minHeight: '100px'}}>
+            <div className='col-md-3' style={{minHeight: '100px'}}>
+              <button className="btn btn-light btn-block" onClick={this.start}
+                  style={{minHeight: '100px', fontSize:'40px'}}>Start</button>
+            </div>
+            <div className='col-md-6 row' style={{minHeight: '100px'}}>
+              <div className='col-md-4'>
+                <input type='number' min='0' max='22' className="form-control"
+                style={{minHeight: '100px', fontSize:'25px', textAlign: 'center'}}
+                 placeholder='minutes' onInput={this.changeMinutes} id='minutes'/>
+              </div>
+              <div className='col-md-1'>
+                <span style={{fontSize:'60px', textAlign: 'center'}}><b>:</b></span>
+              </div>
+              <div className='col-md-4'>
+                <input className="form-control" type='number' min='0' max='22'
+                style={{minHeight: '100px', fontSize:'25px', textAlign: 'center'}}
+                placeholder='seconds' onInput={this.changeSeconds} id='seconds'/>
+              </div>
+              <div className='col-md-3'>
+                <input className="form-control" type='number' min='0' max='22'
+                style={{minHeight: '100px', fontSize:'25px', textAlign: 'center'}}
+                placeholder='inc' onInput={this.changeIncrease} id='increase'/>
+              </div>
+            </div>
+            <div className='col-md-3' style={{minHeight: '100px'}}>
+              <button className="btn btn-light btn-block" onClick={this.stop}
+                  style={{minHeight: '100px', fontSize:'40px'}}>Stop</button>
+            </div>
           </div>
-          <div className='col-md-6' style={{backgroundColor: 'black', minHeight: '500px'}}>
-            <span id='blackTime'>
-              <span id='bMin'>{this.state.blackTime.m > 9 ? this.state.blackTime.m : ('0' + this.state.blackTime.m)}</span>:
-              <span id='bSec'>{this.state.blackTime.s > 9 ? this.state.blackTime.s : ('0' + this.state.blackTime.s)}</span>
-            </span>
-            <img src={require('./img/right.png')} alt='rightKey' className='rightKey'/>
+          <div className='row'>
+            <div className='col-md-6' style={{backgroundColor: 'white', minHeight: '500px'}}>
+              <span id='whiteTime'>
+                <span id='wMin'>{this.state.whiteTime.m > 9 ? this.state.whiteTime.m : ('0' + this.state.whiteTime.m)}</span>:
+                <span id='wSec'>{this.state.whiteTime.s > 9 ? this.state.whiteTime.s : ('0' + this.state.whiteTime.s)}</span>
+              </span>
+              <img src={require('./img/left.png')} alt='keyleft' className='leftKey'/>
+            </div>
+            <div className='col-md-6' style={{backgroundColor: 'black', minHeight: '500px'}}>
+              <span id='blackTime'>
+                <span id='bMin'>{this.state.blackTime.m > 9 ? this.state.blackTime.m : ('0' + this.state.blackTime.m)}</span>:
+                <span id='bSec'>{this.state.blackTime.s > 9 ? this.state.blackTime.s : ('0' + this.state.blackTime.s)}</span>
+              </span>
+              <img src={require('./img/right.png')} alt='rightKey' className='rightKey'/>
+            </div>
           </div>
         </div>
       </div>
