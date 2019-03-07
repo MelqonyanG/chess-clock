@@ -22,3 +22,33 @@ html, body {
     background: #D8E1E2;
     border: 10px solid #eee;
 }
+
+#blackTime{
+  font-size: 120px;
+  color: white;
+  position: absolute;
+  left: 20%;
+  top: 30%;
+}
+
+#whiteTime{
+  font-size: 120px;
+  color: black;
+  position: absolute;
+  left: 20%;
+  top: 30%;
+}
+
+.leftKey{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  right: 10%;
+}
+
+.rightKey{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 10%;
+}
