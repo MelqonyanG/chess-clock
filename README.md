@@ -2,12 +2,12 @@
 
 Chess-clock is a simple chess clock.
 
-  - Define minutes for per side in minutes field
-  - Define seconds for per side in seconds field
-  - Define increase for per side in increase field
-  - Start the clock with the START button
-  - Stop the clock with the STOP button
-  - Change turn with the rightArrow (&rArr;) and leftArrow(&lArr;) keys in your keyboard
+  - Define minutes for per side in **minutes** field
+  - Define seconds for per side in **seconds** field
+  - Define increase for per side in **increase** field
+  - Start the clock with the **START** button
+  - Stop the clock with the **STOP** button
+  - Change turn with the **rightArrow** (&rArr;) and **leftArrow** (&lArr;) keys in your keyboard
 
   ![screenshot](/screenshot.png)
 
