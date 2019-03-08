@@ -9,6 +9,8 @@ Chess-clock is a simple chess clock.
   - Stop the clock with the STOP button
   - Change turn with the rightArrow (&rArr;) and leftArrow(&lArr;) keys in your keyboard
 
+  ![screenshot](/screenshot.png)
+
 
 ### Tech
 
